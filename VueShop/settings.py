@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 import os
 import sys
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, BASE_DIR)
 sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
@@ -27,7 +28,7 @@ SECRET_KEY = 'z(v$@^23_!%jd$(#z2a-uv)#^iz)u+-bzgtzbx#uxmx+zhn7zs'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL = 'users.UserProfile'
 
@@ -62,14 +63,13 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # 'users.middlewares.FilterUidMiddleware',
 ]
-CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ORIGIN_ALLOW_ALL = True
 ROOT_URLCONF = 'VueShop.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
-        ,
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -130,9 +130,9 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = False   #默认是Ture，时间是utc时间，由于我们要用本地时间，所用手动修改为false！！！！
 
-AUTHENTICATION_BACKENDS = (
-    'users.views.CustomBackend',
-)
+# AUTHENTICATION_BACKENDS = (
+#     'users.views.CustomBackend',
+# )
 
 
 # Static files (CSS, JavaScript, Images)
@@ -140,10 +140,14 @@ AUTHENTICATION_BACKENDS = (
 
 STATIC_URL = '/static/'
 
-
-MEDIA_URL = "/media/"
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
 
+MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+REST_FRAMEWORK = {
+    "PAGE_SIZE": 10,
+    "DEFAULT_PAGINATION_CLASS": 'rest_framework.pagination.PageNumberPagination'
+}

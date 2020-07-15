@@ -21,6 +21,7 @@ from goods.models import Goods, GoodsCategory
 #         """
 #         return Goods.objects.create(**validated_data)
 
+
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = GoodsCategory
@@ -33,3 +34,5 @@ class GoodsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Goods
         fields = '__all__'
+
+
