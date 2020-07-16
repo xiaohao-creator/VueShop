@@ -26,12 +26,12 @@ from rest_framework.routers import DefaultRouter
 from rest_framework.authtoken import views
 
 from django.views.generic import TemplateView
-
-from goods.views import GoodsListViewSet
+from goods.views import GoodsListViewSet, CategoryViewSet
 
 router = DefaultRouter()
 # 配置goods的url
-router.register(r'goods', GoodsListViewSet)
+router.register(r'goods', GoodsListViewSet, basename="goods")
+router.register(r'categorys', CategoryViewSet, basename="categorys")
 
 # goods_list = GoodsListViewSet.as_view({
 #     'get': 'list',
